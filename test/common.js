@@ -15,6 +15,11 @@ export default {
         expect( typeof vec[func] ).toEqual( 'function' )
     } ),
 
+    itShouldExistOnPrototype: func => it( `should exist`, () => {
+        expect( vec.prototype ).toHaveProperty( func )
+        expect( typeof vec.prototype[func] ).toEqual( 'function' )
+    } ),
+
     itShouldReturnByDefault: func => exp => it( `should return ${exp}`, () => {
         expect( vec[func]() ).toEqual( exp )
     } ),

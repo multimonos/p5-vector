@@ -47,9 +47,16 @@ v.copy = a => new v( a.x, a.y, a.z )
 //@todo v.negn = (...args) => pipe(flatten, map(v.neg))(args)
 
 //add
-// v.addn = ( ...args ) => pipe( flatten, reducen( v.add ) )( args )
 v.addn = ( ...args ) => pipe( flatten, reduce( v.add )( v.zero() ) )( args )
+v.prototype.addn = function( ...args ) {
+    return pipe( flatten, reduce( v.add )( this.copy() ) )( args )
+}
+
+//sub
 v.subn = ( ...args ) => reduce( v.sub )( first( args ) )( other( args ) )
+v.prototype.subn = function( ...args ) {
+    return reduce( v.sub )( this.copy() )( flatten(args) )
+}
 
 //scale
 v.scale = curry( ( scaleVector, b ) => {
