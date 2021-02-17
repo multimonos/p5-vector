@@ -55,17 +55,22 @@ v.prototype.addn = function( ...args ) {
 //sub
 v.subn = ( ...args ) => reduce( v.sub )( first( args ) )( other( args ) )
 v.prototype.subn = function( ...args ) {
-    return reduce( v.sub )( this.copy() )( flatten(args) )
+    return reduce( v.sub )( this.copy() )( flatten( args ) )
 }
 
 //scale
-v.scale = curry( ( scaleVector, b ) => {
+v.scale = curry( ( a, b ) => { // scale b with a
     const copy = b.copy()
-    copy.x *= scaleVector.x
-    copy.y *= scaleVector.y
-    copy.z *= scaleVector.z
+    copy.x *= a.x
+    copy.y *= a.y
+    copy.z *= a.z
     return copy
 } )
+v.scalen = ( ...args ) => reduce( v.scale )( first( args ) )( other( args ) )
+v.prototype.scale = function( ...args ) {
+    return reduce( v.scale )( this.copy() )( flatten( args ) )
+}
+v.prototype.scalen = v.prototype.scale
 
 //prototype methods
 v.prototype.half = function() {

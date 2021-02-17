@@ -5,7 +5,7 @@ import c from "./common"
 describe( `.neg()`, () => {
 
     describe( `.neg()`, () => {
-        c.itShouldExist( 'neg' )
+        c.itShouldExistAsStaticMethod( 'neg' )
         it.each( [
             [c.zero, { x: -0, y: -0, z: -0 }],
             [c.i3, new vec( -1, -1, -1 )],
@@ -18,7 +18,7 @@ describe( `.neg()`, () => {
     } )
 
     describe( `.negn()`, () => {
-        c.itShouldExist( 'negn' )
+        c.itShouldExistAsStaticMethod( 'negn' )
         it( `will negate and flatten a list of complex list of vectors`, () => {
             const arr = [[c.i2, c.i3], c.zero, new vec( 2, 3, 5 )]
             const a = vec.negn( arr )

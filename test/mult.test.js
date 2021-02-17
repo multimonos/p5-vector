@@ -5,7 +5,7 @@ import c from "./common"
 describe( `.mult()`, () => {
 
     describe( `.mult()`, () => {
-        c.itShouldExist( 'mult' )
+        c.itShouldExistAsStaticMethod( 'mult' )
 
     } )
 

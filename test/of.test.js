@@ -5,7 +5,7 @@ import c from './common'
 describe( `.of()`, () => {
 
     describe( `.of()`, () => {
-        c.itShouldExist( 'of' )
+        c.itShouldExistAsStaticMethod( 'of' )
         c.itShouldCreateUniqueVectors( 'of' )
         c.itShouldReturnByDefault( 'of' )( c.zero )
         it.each( [
@@ -21,7 +21,7 @@ describe( `.of()`, () => {
     } )
 
     describe( `.ofx()`, () => {
-        c.itShouldExist( 'ofx' )
+        c.itShouldExistAsStaticMethod( 'ofx' )
         c.itShouldCreateUniqueVectors( 'ofx' )
         c.itShouldReturnByDefault( 'of' )( c.zero )
         it( `should only set the "x" component`, () => {
@@ -30,7 +30,7 @@ describe( `.of()`, () => {
     } )
 
     describe( `.ofy()`, () => {
-        c.itShouldExist( 'ofy' )
+        c.itShouldExistAsStaticMethod( 'ofy' )
         c.itShouldCreateUniqueVectors( 'ofy' )
         c.itShouldReturnByDefault( 'of' )( c.zero )
         it( `should only set the "x" component`, () => {
@@ -39,7 +39,7 @@ describe( `.of()`, () => {
     } )
 
     describe( `.ofz()`, () => {
-        c.itShouldExist( 'ofz' )
+        c.itShouldExistAsStaticMethod( 'ofz' )
         c.itShouldCreateUniqueVectors( 'ofz' )
         c.itShouldReturnByDefault( 'of' )( c.zero )
         it( `should only set the "z" component`, () => {

@@ -10,12 +10,12 @@ export default {
         expect( vec[func]() ).not.toBe( vec[func]() )
     } ),
 
-    itShouldExist: func => it( `should exist`, () => {
+    itShouldExistAsStaticMethod: func => it( `should exist as a static method`, () => {
         expect( vec ).toHaveProperty( func )
         expect( typeof vec[func] ).toEqual( 'function' )
     } ),
 
-    itShouldExistOnPrototype: func => it( `should exist`, () => {
+    itShouldExistAsPrototypeMethod: func => it( `should exist as a prototype method`, () => {
         expect( vec.prototype ).toHaveProperty( func )
         expect( typeof vec.prototype[func] ).toEqual( 'function' )
     } ),

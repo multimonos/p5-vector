@@ -5,7 +5,7 @@ import c from "./common"
 describe( `.copy()`, () => {
 
     describe( `.copy()`, () => {
-        c.itShouldExist( 'obj' )
+        c.itShouldExistAsStaticMethod( 'obj' )
         it( `should return a copy of the vector`, () => {
             const v = new vec( 1, 1, 1 )
             const a = vec.copy( v )
