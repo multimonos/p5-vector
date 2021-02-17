@@ -38,4 +38,5 @@ describe( `convenience`, () => {
         c.itShouldReturnByDefault( 'obj' )( { x: {}, y: {}, z: {} } )
         c.itShouldCreateUniqueVectors( 'obj' )
     } )
+
 } )
