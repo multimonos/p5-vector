@@ -50,5 +50,9 @@ describe( `.neg`, () => {
 
     } )
 
+    describe( `.prototype.negn()`, () => {
+        c.itShouldNotExistAsPrototypeMethod('negn')
+    } )
+
 } )
 

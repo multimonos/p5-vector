@@ -1,4 +1,4 @@
-import {Vector as vec} from "../src"
+import { Vector as vec } from "../src"
 import c from "./common"
 
 describe( `convenience`, () => {
@@ -38,5 +38,7 @@ describe( `convenience`, () => {
         c.itShouldReturnByDefault( 'obj' )( { x: {}, y: {}, z: {} } )
         c.itShouldCreateUniqueVectors( 'obj' )
     } )
+
+
 
 } )

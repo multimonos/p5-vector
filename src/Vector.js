@@ -44,9 +44,9 @@ v.copy = a => new v( a.x, a.y, a.z )
 
 //neg*
 v.neg = v => v.copy().mult( -1 )
-v.negn = (...args) => pipe(flatten, map(v.neg))(args)
+v.negn = ( ...args ) => pipe( flatten, map( v.neg ) )( args )
 v.prototype.neg = function() {
-    return v.neg(this.copy())
+    return v.neg( this.copy() )
 }
 
 //add
@@ -75,14 +75,10 @@ v.prototype.scale = function( ...args ) {
 }
 v.prototype.scalen = v.prototype.scale
 
-//prototype methods
-v.prototype.half = function() {
-    return this.mult( 0.5 )
-}
 
-v.prototype.double = function() {
-    return this.mult( 2 )
-}
+//prototype methods
+v.prototype.half = function() { return v.mult( this, 0.5 ) }
+v.prototype.double = function() { return v.mult( this, 2 ) }
 
 // new methods
 v.subdivide = pointCount => a => b => { // a, b : p5.vec

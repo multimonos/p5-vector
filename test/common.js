@@ -15,9 +15,17 @@ export default {
         expect( typeof vec[func] ).toEqual( 'function' )
     } ),
 
+    itShouldNotExistAsStaticMethod: func => it( `should NOT exist as a static method`, () => {
+        expect( vec ).not.toHaveProperty( func )
+    } ),
+
     itShouldExistAsPrototypeMethod: func => it( `should exist as a prototype method`, () => {
         expect( vec.prototype ).toHaveProperty( func )
         expect( typeof vec.prototype[func] ).toEqual( 'function' )
+    } ),
+
+    itShouldNotExistAsPrototypeMethod: func => it( `should NOT exist as a prototype method`, () => {
+        expect( vec.prototype ).not.toHaveProperty( func )
     } ),
 
     itShouldReturnByDefault: func => exp => it( `should return ${exp}`, () => {
