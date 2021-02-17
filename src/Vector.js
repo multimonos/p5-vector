@@ -43,8 +43,11 @@ const other = pipe( flatten, tail ) // everthing except the first
 v.copy = a => new v( a.x, a.y, a.z )
 
 //neg*
-//@todo v.neg = v => v.copy().mult( -1 )
-//@todo v.negn = (...args) => pipe(flatten, map(v.neg))(args)
+v.neg = v => v.copy().mult( -1 )
+v.negn = (...args) => pipe(flatten, map(v.neg))(args)
+v.prototype.neg = function() {
+    return v.neg(this.copy())
+}
 
 //add
 v.addn = ( ...args ) => pipe( flatten, reduce( v.add )( v.zero() ) )( args )
