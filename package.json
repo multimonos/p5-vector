@@ -1,0 +1,47 @@
+{
+    "name": "@multimonos/p5-vector",
+    "version": "0.1.0",
+    "description": "p5js vector wrapper and additions to the p5.Vector library",
+    "main": "lib/index.js",
+    "exports": "lib/index.modern.js",
+    "module": "lib/index.module.js",
+    "unpkg": "lib/index.umd.js",
+    "scripts": {
+        "test": "jest",
+        "build": "microbundle build",
+        "watch": "microbundle watch --no-sourcemap"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/multimonos/p5-vector.git"
+    },
+    "keywords": [
+        "p5js",
+        "vector"
+    ],
+    "author": "craig hopgood",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/multimonos/p5-vector/issues"
+    },
+    "homepage": "https://github.com/multimonos/p5-vector#readme",
+    "dependencies": {
+        "p5": "^1.2.0",
+        "ramda": "^0.27.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/preset-env": "^7.12.11",
+        "@types/jest": "^26.0.20",
+        "babel-jest": "^26.6.3",
+        "jest": "^26.6.3",
+        "jest-canvas-mock": "^2.3.0",
+        "microbundle": "^0.13.0"
+    },
+    "jest": {
+        "verbose": true,
+        "setupFiles": [
+            "jest-canvas-mock"
+        ]
+    }
+}
