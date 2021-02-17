@@ -31,9 +31,16 @@ v.zero = () => v.of( 0 )
 v.null = () => v.of( null )
 v.i2 = () => v.of2( 1 )
 v.i3 = () => v.of( 1 )
+v.ix = () => new v( 1, 0, 0 )
+v.iy = () => new v( 0, 1, 0 )
+v.iz = () => new v( 0, 0, 1 )
 v.array = () => v.of( [] )
 v.obj = () => v.of( {} )
 
+
+//convenience prototype methods
+v.prototype.half = function() { return v.mult( this, 0.5 ) }
+v.prototype.double = function() { return v.mult( this, 2 ) }
 
 // helper methods
 const first = pipe( flatten, head )
@@ -75,10 +82,6 @@ v.prototype.scale = function( ...args ) {
 }
 v.prototype.scalen = v.prototype.scale
 
-
-//prototype methods
-v.prototype.half = function() { return v.mult( this, 0.5 ) }
-v.prototype.double = function() { return v.mult( this, 2 ) }
 
 // new methods
 v.subdivide = pointCount => a => b => { // a, b : p5.vec
