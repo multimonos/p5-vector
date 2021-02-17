@@ -1,5 +1,14 @@
 import p5 from 'p5'
-import { flatten, merge, curry, pipe, map } from "ramda";
+import {
+    curry,
+    flatten,
+    head,
+    map,
+    merge,
+    pipe,
+    reduce,
+    tail,
+} from "ramda";
 
 const trace = x => {
     console.log( 'trace:', x );
@@ -26,11 +35,23 @@ v.array = () => v.of( [] )
 v.obj = () => v.of( {} )
 
 
+// helper methods
+const first = pipe( flatten, head )
+const other = pipe( flatten, tail ) // everthing except the first
+
 //static methods
 v.copy = a => new v( a.x, a.y, a.z )
-v.neg = v => v.copy().mult( -1 )
-v.negn = (...args) => pipe(flatten, trace, map(v.neg))(args)
 
+//neg*
+//@todo v.neg = v => v.copy().mult( -1 )
+//@todo v.negn = (...args) => pipe(flatten, map(v.neg))(args)
+
+//add
+// v.addn = ( ...args ) => pipe( flatten, reducen( v.add ) )( args )
+v.addn = ( ...args ) => pipe( flatten, reduce( v.add )( v.zero() ) )( args )
+v.subn = ( ...args ) => reduce( v.sub )( first( args ) )( other( args ) )
+
+//scale
 v.scale = curry( ( scaleVector, b ) => {
     const copy = b.copy()
     copy.x *= scaleVector.x
