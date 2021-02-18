@@ -10,21 +10,24 @@ import {
     tail,
 } from "ramda";
 
-const trace = x => {
-    console.log( 'trace:', x );
-    return x;
-}
 
 const v = p5.Vector
 
-// constructors
-v.of = k => new v( k, k, k )
-v.of2 = k => new v( k, k, 0 )
-v.ofx = k => new v( k, 0, 0 )
-v.ofy = k => new v( 0, k, 0 )
-v.ofz = k => new v( 0, 0, k )
+// helper methodsd
+const trace = o => {
+    console.log( 'trace:', o );
+    return o;
+}
+const first = pipe( flatten, head )
+const other = pipe( flatten, tail ) // everthing except the first
 
+// constructors
 v.create = ( ...args ) => new v( ...args )
+v.of = k => v.create( k, k, k )
+v.of2 = k => v.create( k, k )
+v.ofx = k => v.create( k )
+v.ofy = k => v.create( 0, k )
+v.ofz = k => v.create( 0, 0, k )
 
 // convenience
 v.zero = () => v.of( 0 )
@@ -37,14 +40,10 @@ v.iz = () => new v( 0, 0, 1 )
 v.array = () => v.of( [] )
 v.obj = () => v.of( {} )
 
-
 //convenience prototype methods
 v.prototype.half = function() { return v.mult( this, 0.5 ) }
 v.prototype.double = function() { return v.mult( this, 2 ) }
 
-// helper methods
-const first = pipe( flatten, head )
-const other = pipe( flatten, tail ) // everthing except the first
 
 //static methods
 v.copy = a => new v( a.x, a.y, a.z )
