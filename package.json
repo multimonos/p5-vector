@@ -1,6 +1,6 @@
 {
-    "name": "@multimonos/p5-vector",
-    "version": "0.1.0",
+    "name": "@multimonos/p5-vectorxt",
+    "version": "0.1.1",
     "description": "p5js vector wrapper and additions to the p5.Vector library",
     "main": "lib/index.js",
     "exports": "lib/index.modern.js",
