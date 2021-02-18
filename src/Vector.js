@@ -1,6 +1,7 @@
 import p5 from 'p5'
 import {
     curry,
+    concat,
     flatten,
     head,
     map,
@@ -8,18 +9,20 @@ import {
     pipe,
     reduce,
     tail,
+    tap,
+    toString,
+    lensProp,
 } from "ramda";
-
 
 const v = p5.Vector
 
-// helper methodsd
-const trace = o => {
-    console.log( 'trace:', o );
-    return o;
-}
+// helper methods
+const trace = pipe( toString, concat( 'trace: ' ), tap( console.log ) )
 const first = pipe( flatten, head )
 const other = pipe( flatten, tail ) // everthing except the first
+const xLens = lensProp( 'x' )
+const yLens = lensProp( 'y' )
+const zLens = lensProp( 'z' )
 
 // constructors
 v.create = ( ...args ) => new v( ...args )
@@ -45,7 +48,10 @@ v.prototype.half = function() { return v.mult( this, 0.5 ) }
 v.prototype.double = function() { return v.mult( this, 2 ) }
 
 
-//static methods
+//apply
+v.apply = curry( ( fnv, v ) => pipe( v.copy, trace ) ) //@todo
+
+//copy
 v.copy = a => new v( a.x, a.y, a.z )
 
 //neg*
@@ -55,19 +61,19 @@ v.prototype.neg = function() {
     return v.neg( this.copy() )
 }
 
-//add
-v.addn = ( ...args ) => pipe( flatten, reduce( v.add )( v.zero() ) )( args )
+//add*
+v.addn = ( ...args ) => pipe( flatten, reduce( v.add, v.zero() ) )( args )
 v.prototype.addn = function( ...args ) {
-    return pipe( flatten, reduce( v.add )( this.copy() ) )( args )
+    return pipe( flatten, reduce( v.add, this.copy() ) )( args )
 }
 
-//sub
-v.subn = ( ...args ) => reduce( v.sub )( first( args ) )( other( args ) )
+//sub*
+v.subn = ( ...args ) => reduce( v.sub, first( args ), other( args ) )
 v.prototype.subn = function( ...args ) {
-    return reduce( v.sub )( this.copy() )( flatten( args ) )
+    return reduce( v.sub, this.copy(), flatten( args ) )
 }
 
-//scale
+//scale*
 v.scale = curry( ( a, b ) => { // scale b with a
     const copy = b.copy()
     copy.x *= a.x
@@ -75,9 +81,9 @@ v.scale = curry( ( a, b ) => { // scale b with a
     copy.z *= a.z
     return copy
 } )
-v.scalen = ( ...args ) => reduce( v.scale )( first( args ) )( other( args ) )
+v.scalen = ( ...args ) => reduce( v.scale, first( args ), other( args ) )
 v.prototype.scale = function( ...args ) {
-    return reduce( v.scale )( this.copy() )( flatten( args ) )
+    return reduce( v.scale, this.copy(), flatten( args ) )
 }
 v.prototype.scalen = v.prototype.scale
 
