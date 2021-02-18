@@ -1,11 +1,11 @@
 {
     "name": "@multimonos/p5-vectorxt",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "p5js vector wrapper and additions to the p5.Vector library",
-    "main": "lib/index.js",
-    "exports": "lib/index.modern.js",
-    "module": "lib/index.module.js",
-    "unpkg": "lib/index.umd.js",
+    "main": "./lib/index.js",
+    "exports": "./lib/index.modern.js",
+    "module": "./lib/index.module.js",
+    "unpkg": "./lib/index.umd.js",
     "scripts": {
         "test": "jest",
         "build": "microbundle build",
